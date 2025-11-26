@@ -100,11 +100,27 @@ pnpm dev
 
 **Production mode**:
 ```bash
-pnpm build
+# Build the TypeScript code
+pnpm run build
+
+# Start the production server
 pnpm start
+# OR
+node dist/server.js
+```
+
+**Production build verification**:
+```bash
+# Verify build succeeds (exit code 0)
+pnpm run build
 ```
 
 The server will start on `http://localhost:3000`
+
+> **Note for Railway/Production Deployment:**
+> - Build command: `pnpm run build`
+> - Start command: `pnpm start` or `node dist/server.js`
+> - The build has been tested and passes with zero TypeScript errors
 
 ### Running Tests
 

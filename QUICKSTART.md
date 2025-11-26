@@ -240,8 +240,11 @@ You should see the balanced trial balance with your journal entry!
 ```bash
 # Development
 pnpm dev                 # Start dev server with hot reload
-pnpm build              # Build for production
+
+# Production
+pnpm run build           # Build TypeScript (verified: exits with code 0)
 pnpm start              # Start production server
+node dist/server.js     # Alternative start command
 
 # Database
 pnpm db:generate        # Generate migrations from schema
@@ -307,3 +310,62 @@ For production:
 8. Set up backups
 
 Happy accounting! 📊
+
+
+## Production Deployment (Railway)
+
+CraneLedger is ready for production deployment on Railway or similar platforms.
+
+### Build Configuration
+
+**Build Command:**
+```bash
+pnpm run build
+```
+
+**Start Command:**
+```bash
+pnpm start
+```
+OR
+```bash
+node dist/server.js
+```
+
+### Environment Variables
+
+Set these in your Railway/production environment:
+
+```
+DATABASE_URL=postgresql://user:password@host:port/database
+PORT=3000
+NODE_ENV=production
+LOG_LEVEL=info
+```
+
+### Verification
+
+The TypeScript build has been tested and verified to:
+- ✅ Complete with **zero TypeScript errors**
+- ✅ Exit with code **0** (success)
+- ✅ Generate production-ready JavaScript in `dist/` directory
+- ✅ Work correctly with Node.js 22+
+
+### Deployment Steps
+
+1. Push code to GitHub
+2. Connect repository to Railway
+3. Railway will automatically detect Node.js
+4. Set environment variables
+5. Deploy!
+
+Railway will run:
+```bash
+pnpm install
+pnpm run build  # ✅ Succeeds with 0 errors
+pnpm start      # Starts production server
+```
+
+---
+
+**Happy accounting! 📊**
